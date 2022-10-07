@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
                 body.gravityScale = 2.5f;
             }
 
-            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
                 Jump();
             }
