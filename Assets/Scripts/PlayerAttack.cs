@@ -38,19 +38,21 @@ public class PlayerAttack : MonoBehaviour
         anim.SetTrigger("attack");
         cooldownTimer = 0;
         // pool fireballs
-        fireballs[FindFireball()].transform.position = firePoint.position;
-        fireballs[FindFireball()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        var nextFireball = FindFireball();
+        nextFireball.transform.position = firePoint.position;
+        nextFireball.GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
     }
 
-    private int FindFireball()
+    private GameObject FindFireball()
     {
-        for (int i = 0; i < fireballs.Length; i++)
+        foreach (var fireball in fireballs)
         {
-            if (!fireballs[i].activeInHierarchy)
+            if (!fireball.activeInHierarchy)
             {
-                return i;
+                return fireball;
             }
         }
-        return 0;
+        // Just return the first one. Could probably create a new one whenever they're needed instead, but meh
+        return fireballs[0];
     }
 }
